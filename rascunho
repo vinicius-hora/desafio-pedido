@@ -1,0 +1,43 @@
+https://github.com/buildrun-tech/buildrun-desafio-backend-btg-pactual/blob/main/problem.md
+
+criação de entidades
+
+pedidos{
+    id
+    codigoPedido
+    codigoCliente
+}
+
+iten:{
+    id
+    codigoPedido
+    produto
+    quantidade
+    preco
+}
+
+deve receber via mensageria ou request
+campos por mensageria:
+{
+   "codigoPedido": 1001,
+   "codigoCliente":1,
+   "itens": [
+       {
+           "produto": "lápis",
+           "quantidade": 100,
+           "preco": 1.10
+       },
+       {
+           "produto": "caderno",
+           "quantidade": 10,
+           "preco": 1.00
+       }
+   ]
+}
+
+fazer tratamento para inserir o codigoProduto antes de salvar no banco
+Crie uma API REST, em que permita o consultar as seguintes informações:
+
+Valor total do pedido
+Quantidade de Pedidos por Cliente
+Lista de pedidos realizados por cliente
