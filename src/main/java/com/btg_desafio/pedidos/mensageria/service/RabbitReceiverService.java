@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitReceiverService {
 
-    public void receiveMessage(TestRabbitMqDto message) {
-        System.out.println("Mensagem recebida: " + message.getTeste());
-    }
+//    public void receiveMessage(TestRabbitMqDto message) {
+//        System.out.println("Mensagem recebida: " + message.getTeste());
+//    }
 
 }

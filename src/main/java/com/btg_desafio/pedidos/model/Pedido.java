@@ -1,14 +1,16 @@
-package com.btg_desafio.pedidos.mensageria.model;
+package com.btg_desafio.pedidos.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
+@ToString
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
