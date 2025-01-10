@@ -46,8 +46,8 @@ Lista de pedidos realizados por cliente
 configurar o body do listener e salvar no banco de dados - ok
 salvar no banco dados os dados recebidos via mensageria - ok
 criar rollback em caso de erro na mensageria - ok
-criar metodo para salvar os dados via request
-criar configiguração de origin
+criar metodo para salvar os dados via request - ok
+criar configiguração de origin - ok
 criar requesthandeler para gerenciar exceptions
 trocar para banco de dados postgres
 criar dockerfile e docker-compose
