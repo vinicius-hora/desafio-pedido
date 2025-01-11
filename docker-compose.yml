@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  pedidos:
+    build: .
+    depends_on:
+      - rabbitmq
+    deploy:
+      resources:
+        limits:
+          memory: "512m"
+          cpus: "0.5"
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      PROFILE: "test"
+      RABBIT_HOST: "rabbitmq"
+      RABBIT_PORT: 5672
+      RABBIT_USER: "admin"
+      RABBIT_PASSWORD: "admin"
+#      DB_URL: "jdbc:postgresql://localhost:5432/desafio-pp"
+#      DB_USERNAME: "postgres"
+#      DB_PASSWORD: "postgres"
+#      OPEN_IN_VIEW: false
+#      GENERATE_DDL: true
+#      ENABLE_SQL: false
+#      EXPOSURE_INCLUDE: "actuator,health,loggers,prometheus,metrics,info"
+#      SPRING_ADMIN_URL: "http://localhost:4000/"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    deploy:
+      resources:
+        limits:
+          cpus: '0.300'
+          memory: 256M
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+      - RABBITMQ_LOAD_DEFINITIONS=/etc/rabbitmq/definitions.json
+#    volumes:
+#      - ./rabbitmq:/var/lib/rabbitmq
+#      - ./rabbitmq_definitions.json:/etc/rabbitmq/definitions.json

@@ -1,5 +1,6 @@
 package com.btg_desafio.pedidos.mensageria.config;
 
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -26,6 +27,11 @@ public class RabbitConsumerConfig {
         factory.setConnectionFactory(connectionFactory);
         factory.setMessageConverter(messageConverter);
         return factory;
+    }
+
+    @Bean
+    public Queue pedidoRequestQueue() {
+        return new Queue("pedido-request-queue", true); // 'true' indica que a fila é durável
     }
 
 }
