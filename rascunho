@@ -50,6 +50,12 @@ criar metodo para salvar os dados via request - ok
 criar configiguração de origin - ok
 criar requesthandeler para gerenciar exceptions
 trocar para banco de dados postgres
-criar dockerfile e docker-compose
+criar dockerfile e docker-compose - ok
+criar validação para não inserir mesmo codigo_pedido mensageria
+criar validação para não inserir mesmo codigo_pedido api
+cria validação para campos obrigatórios
+criar swagger
+criar documentação do readme
+
 testes
 
