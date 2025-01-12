@@ -1,7 +1,9 @@
 package com.btg_desafio.pedidos.api.controller;
 
+import com.btg_desafio.pedidos.api.dto.PedidoApiResponseDto;
 import com.btg_desafio.pedidos.api.dto.PedidoRequestApiDto;
 import com.btg_desafio.pedidos.api.service.PedidoApiService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,11 +20,11 @@ public class PedidoController {
     private final PedidoApiService pedidoApiService;
 
     @PostMapping
-    public ResponseEntity<?> salvarPedido(@RequestBody @Validated PedidoRequestApiDto pedidoRequestDto){
+    public ResponseEntity<PedidoApiResponseDto> salvarPedido(@RequestBody @Validated PedidoRequestApiDto pedidoRequestDto){
 
-        pedidoApiService.salvarPedido(pedidoRequestDto);
+        var response = pedidoApiService.salvarPedido(pedidoRequestDto);
 
-        return ResponseEntity.ok("Pedido salvo");
+        return ResponseEntity.ok(response);
 
     }
 }

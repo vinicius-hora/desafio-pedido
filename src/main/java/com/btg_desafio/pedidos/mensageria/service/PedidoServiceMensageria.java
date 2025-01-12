@@ -1,6 +1,5 @@
 package com.btg_desafio.pedidos.mensageria.service;
 
-import com.btg_desafio.pedidos.mensageria.dto.ItemRequestDto;
 import com.btg_desafio.pedidos.mensageria.dto.PedidoRequestDto;
 import com.btg_desafio.pedidos.mensageria.exception.GenericRuntimeException;
 import com.btg_desafio.pedidos.mensageria.repository.ItemRepository;
@@ -22,6 +21,7 @@ public class PedidoServiceMensageria {
     public void salvarPedido(PedidoRequestDto pedidoRequestDto){
 
         try{
+            validarPedido(pedidoRequestDto);
             var pedido = pedidoRequestDto.PedidoRequestDtoToPedido();
             var itens = pedidoRequestDto.getItens().stream()
                     .map(i -> i.itemRequestDtoToItem(pedidoRequestDto.getCodigoPedido())).toList();
@@ -32,8 +32,15 @@ public class PedidoServiceMensageria {
             log.info("Mensagem Recebida e processada com sucesso, pedido: {}", pedidoRequestDto.getCodigoPedido());
 
         }catch (GenericRuntimeException e){
-            log.error("Erro ao salvar pedido");
+            log.error("Erro ao salvar pedido: " + e.getMessage());
 
+        }
+    }
+
+    private void validarPedido(PedidoRequestDto pedidoRequestDto){
+        var pedidoOptional = pedidoRepository.buscarPedidoPorCodigoPedido(pedidoRequestDto.getCodigoPedido());
+        if(pedidoOptional.isPresent()){
+            throw new GenericRuntimeException("Codigo de pedio ja cadastrado");
         }
     }
 

@@ -26,7 +26,7 @@ public class ItemApiService {
             log.info("item salvo para o pedido: {}", pedidoRequestDto.getCodigoPedido());
 
         } catch (GenericRuntimeApiException e) {
-            throw new GenericRuntimeApiException(e);
+            throw new GenericRuntimeApiException(e.getMessage());
         }
     }
 }

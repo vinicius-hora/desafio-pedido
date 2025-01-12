@@ -1,6 +1,7 @@
 package com.btg_desafio.pedidos.api.service;
 
 import com.btg_desafio.pedidos.api.Exception.GenericRuntimeApiException;
+import com.btg_desafio.pedidos.api.dto.PedidoApiResponseDto;
 import com.btg_desafio.pedidos.api.dto.PedidoRequestApiDto;
 import com.btg_desafio.pedidos.api.repository.PedidoApiRepository;
 import jakarta.transaction.Transactional;
@@ -17,8 +18,10 @@ public class PedidoApiService {
     private final ItemApiService itemApiService;
 
     @Transactional(rollbackOn = GenericRuntimeApiException.class )
-    public void salvarPedido(PedidoRequestApiDto pedidoRequestDto) {
+    public PedidoApiResponseDto salvarPedido(PedidoRequestApiDto pedidoRequestDto) {
+        PedidoApiResponseDto responseDto = new PedidoApiResponseDto();
         try{
+            validarPedido(pedidoRequestDto);
             var pedido = pedidoRequestDto.PedidoRequestDtoToPedido();
 
             pedidoApiRepository.save(pedido);
@@ -26,8 +29,28 @@ public class PedidoApiService {
 
             itemApiService.salvarItem(pedidoRequestDto);
 
+
+        responseDto = montarResponse(pedidoRequestDto);
+        return responseDto;
         } catch (GenericRuntimeApiException e) {
-            throw new GenericRuntimeApiException(e);
+            throw new GenericRuntimeApiException(e.getMessage());
         }
+    }
+
+    private void validarPedido(PedidoRequestApiDto pedidoRequestDto){
+        var pedidoOptional = pedidoApiRepository.buscarPedidoPorCodigoPedido(pedidoRequestDto.getCodigoPedido());
+        if(pedidoOptional.isPresent()){
+            throw new GenericRuntimeApiException("Codigo de pedio ja cadastrado");
+        }
+    }
+
+    private PedidoApiResponseDto montarResponse(PedidoRequestApiDto requestApiDto){
+        PedidoApiResponseDto responseDto = new PedidoApiResponseDto();
+
+        responseDto.setCodigoPedido(requestApiDto.getCodigoPedido());
+        responseDto.setCodigoCliente(requestApiDto.getCodigoCliente());
+        responseDto.setQuantidadeItens(requestApiDto.getItens().size());
+
+        return responseDto;
     }
 }
