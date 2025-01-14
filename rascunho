@@ -38,9 +38,9 @@ campos por mensageria:
 fazer tratamento para inserir o codigoProduto antes de salvar no banco
 Crie uma API REST, em que permita o consultar as seguintes informações:
 // requisitos obrigatorios
-Valor total do pedido
-Quantidade de Pedidos por Cliente
-Lista de pedidos realizados por cliente
+Valor total do pedido - ok
+Quantidade de Pedidos por Cliente - ok
+Lista de pedidos realizados por cliente - ok
 
 //etapas
 configurar o body do listener e salvar no banco de dados - ok
