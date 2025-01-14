@@ -3,10 +3,13 @@ package com.btg_desafio.pedidos.api.service;
 import com.btg_desafio.pedidos.api.Exception.GenericRuntimeApiException;
 import com.btg_desafio.pedidos.api.dto.PedidoRequestApiDto;
 import com.btg_desafio.pedidos.api.repository.ItemApiRepository;
+import com.btg_desafio.pedidos.model.Item;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +31,14 @@ public class ItemApiService {
         } catch (GenericRuntimeApiException e) {
             throw new GenericRuntimeApiException(e.getMessage());
         }
+    }
+
+    public List<Item> buscarItensPeloPedido(String numeroPedido) {
+        var itemList = itemApiRepository.buscarItensPeloPedido(numeroPedido);
+        if(itemList.isEmpty()){
+            throw new GenericRuntimeApiException("nenhum pedido encontrado para o código informado.");
+        }
+
+        return itemList;
     }
 }

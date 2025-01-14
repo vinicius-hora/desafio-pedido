@@ -3,11 +3,14 @@ package com.btg_desafio.pedidos.api.service;
 import com.btg_desafio.pedidos.api.Exception.GenericRuntimeApiException;
 import com.btg_desafio.pedidos.api.dto.PedidoApiResponseDto;
 import com.btg_desafio.pedidos.api.dto.PedidoRequestApiDto;
+import com.btg_desafio.pedidos.api.dto.ValorPedidoApiResponse;
 import com.btg_desafio.pedidos.api.repository.PedidoApiRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @RequiredArgsConstructor
@@ -52,5 +55,20 @@ public class PedidoApiService {
         responseDto.setQuantidadeItens(requestApiDto.getItens().size());
 
         return responseDto;
+    }
+
+    public ValorPedidoApiResponse ValorTotalPedido(String numeroPedido) {
+        ValorPedidoApiResponse valorPedidoApiResponse = new ValorPedidoApiResponse();
+        AtomicReference<Double> valor = new AtomicReference<>(0.0);
+
+        var itens = itemApiService.buscarItensPeloPedido(numeroPedido);
+        itens.stream().forEach( i -> {
+            valor.updateAndGet(v -> v + i.getPreco());
+        });
+
+        valorPedidoApiResponse.setCodigoPedido(numeroPedido);
+        valorPedidoApiResponse.setValorTotal(valor.get());
+
+        return valorPedidoApiResponse;
     }
 }
