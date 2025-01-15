@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @ToString
+@Table(name = "pedido")
 public class Pedido extends AbstractDateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

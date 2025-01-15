@@ -4,7 +4,7 @@ spring:
   application:
     name: pedidos
   profiles:
-    active: ${PROFILE:test}
+    active: ${PROFILE:prod}
 ---
 # endpoint metrics
 management:
@@ -34,6 +34,19 @@ springdoc:
     tryItOutEnabled: true
     tagsSorter: alpha
     filter: true
+
+---
+# endpoint metrics
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ${EXPOSURE_INCLUDE:health,loggers,prometheus,metrics,info}
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
 ---
 config:
   openapi:

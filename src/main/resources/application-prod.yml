@@ -10,7 +10,7 @@ spring:
       idle-timeout: 10000
       minimum-idle: 1
       maximum-poll-size: 5
-      pool-name: desafio-pp-api
+      pool-name: pedido-api
 ---
 #jpa
 spring:
