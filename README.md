@@ -60,7 +60,7 @@ Os scripts sql para criação das tabelas estão no diretório resources/db/migr
 PORT: porta que será iniciado o projeto
 
 ACTIVE_PROFILE:
-test - Banco de dados em memória,
+dev - Banco de dados em memória
 prod - deve passar os parametros do banco de dados
 
 DB_URL: postgres (usuário do banco)
@@ -69,7 +69,9 @@ DB_USERNAME: postgres (senha do banco)
 
 DB_PASSWORD: devbook (nome do banco)
 
-EXPOSURE_INCLUDE: Endpoints da bibliotec actuator que deseja liberar
+EXPOSURE_INCLUDE: Endpoints da biblioteca do actuator que deseja liberar
+
+RABBIT_QUEUE_NAME: Nome da fila do RabbitMq
 
 GENERATE_DDL:
 

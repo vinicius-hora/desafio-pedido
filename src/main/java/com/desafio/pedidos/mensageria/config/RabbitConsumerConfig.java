@@ -5,6 +5,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 @Configuration
 public class RabbitConsumerConfig {
+    @Value("${config.rabbit-queue-name}")
+    private String rabbitQueue;
 
     @Bean
     public Jackson2JsonMessageConverter messageConverter() {
@@ -31,7 +34,7 @@ public class RabbitConsumerConfig {
 
     @Bean
     public Queue pedidoRequestQueue() {
-        return new Queue("pedido-request-queue", true); // 'true' indica que a fila é durável
+        return new Queue(rabbitQueue, true); // 'true' indica que a fila é durável
     }
 
 }

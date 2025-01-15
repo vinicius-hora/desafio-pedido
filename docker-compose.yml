@@ -14,11 +14,12 @@ services:
       - "4000:4000"
     environment:
       PORT: 4000
-      PROFILE: "test"
+      PROFILE: "dev"
       RABBIT_HOST: "rabbitmq"
       RABBIT_PORT: 5672
       RABBIT_USER: "admin"
       RABBIT_PASSWORD: "admin"
+      RABBIT_QUEUE_NAME: "pedido-request-queue"
       DB_URL: "jdbc:postgresql://localhost:5432/desafio-btg"
       DB_USERNAME: "postgres"
       DB_PASSWORD: "postgres"

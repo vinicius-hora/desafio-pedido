@@ -4,7 +4,7 @@ spring:
   application:
     name: pedidos
   profiles:
-    active: ${PROFILE:prod}
+    active: ${PROFILE:dev}
 ---
 # endpoint metrics
 management:
@@ -49,6 +49,7 @@ management:
       enabled: true
 ---
 config:
+  rabbit-queue-name: ${RABBIT_QUEUE_NAME:pedido-request-queue}
   openapi:
     dev-url: ${OPENAPI_DEV_URL:}
     prod-url: ${OPENAPI_PROD_URL:}

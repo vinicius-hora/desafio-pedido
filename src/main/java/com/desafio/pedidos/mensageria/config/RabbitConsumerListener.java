@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +15,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Slf4j
 public class RabbitConsumerListener {
-    private final RabbitRequestValidator requestValidator;
+    @Value("${config.rabbit-queue-name}")
+    private String rabbitQueue;
 
+    private final RabbitRequestValidator requestValidator;
     private final PedidoServiceMensageria pedidoServiceMensageria;
 
-    @RabbitListener(queues = {"pedido-request-queue"})
+    @RabbitListener(queues = {"${config.rabbit-queue-name}"})
     public void receberPedido(@Payload PedidoRequestDto message){
         try{
             requestValidator.validate(message);
