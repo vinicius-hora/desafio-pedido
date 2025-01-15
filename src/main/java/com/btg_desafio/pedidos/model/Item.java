@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "item")
 @ToString
-public class Item {
+public class Item extends AbstractDateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

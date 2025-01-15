@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @Entity
 @ToString
-public class Pedido {
+public class Pedido extends AbstractDateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
