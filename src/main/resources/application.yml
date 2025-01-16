@@ -1,17 +1,17 @@
 server:
-  port: ${PORT:4000}
+  port: ${PORT:4004}
 spring:
   application:
     name: pedidos
   profiles:
-    active: ${PROFILE:dev}
+    active: ${PROFILE:prod}
 ---
 # endpoint metrics
 management:
   endpoints:
     web:
       exposure:
-        include: ${EXPOSURE_INCLUDE:*}
+        include: ${EXPOSURE_INCLUDE:health,loggers,prometheus,metrics,info}
 
 
 ---

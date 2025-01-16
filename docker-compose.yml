@@ -27,6 +27,11 @@ services:
       GENERATE_DDL: true
       ENABLE_SQL: false
       EXPOSURE_INCLUDE: "actuator,health,loggers,prometheus,metrics,info"
+      SPRING_ADMIN_ACTIVE: "false"
+      SPRING_ADMIN_URL:
+      CLIENT_SERVICE_URL: "http://localhost:4000"
+      CLIENT_HEALTH_URL: "http://localhost:4000/actuator/health"
+      CLIENT_MANAGEMENT_URL: "http://localhost:4000/actuator"
 
   rabbitmq:
     image: rabbitmq:3-management

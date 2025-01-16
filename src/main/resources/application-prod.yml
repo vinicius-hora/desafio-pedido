@@ -36,13 +36,13 @@ spring:
 
 
 ---
-#spring:
-#  boot:
-#    admin:
-#      client:
-#        enabled: true
-#        url: ${SPRING_ADMIN_URL:http://localhost:4000}
-#        instance:
-#          service-url: ${SERVICE_URL:http://localhost:4004}
-#          health-url: ${HEALTH_URL:http://localhost:4004/actuator/health}
-#          management-url: ${MANAGEMENT_URL:http://localhost:4004/actuator}
+spring:
+  boot:
+    admin:
+      client:
+        enabled: ${SPRING_ADMIN_ACTIVE:false}
+        url: ${SPRING_ADMIN_URL:http://localhost:4000}
+        instance:
+          service-url: ${CLIENT_SERVICE_URL:http://localhost:4004}
+          health-url: ${CLIENT_HEALTH_URL:http://localhost:4004/actuator/health}
+          management-url: ${CLIENT_MANAGEMENT_URL:http://localhost:4004/actuator}

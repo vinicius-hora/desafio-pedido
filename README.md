@@ -35,6 +35,7 @@ As consultas podem ser feitas de forma síncrona através da API, retornando os 
 - Flyway
 - Swagger
 - Actuator
+- Spring-Admin
 
 ### Instruções para Execução
 
@@ -61,7 +62,8 @@ PORT: porta que será iniciado o projeto
 
 ACTIVE_PROFILE:
 dev - Banco de dados em memória
-prod - deve passar os parametros do banco de dados
+
+prod - deve passar os parametros do banco de dados e do spring_admin, caso SPRING_ADMIN_ACTIVE = true 
 
 DB_URL: postgres (usuário do banco)
 
@@ -78,6 +80,17 @@ GENERATE_DDL:
 ENABLE_SQL:
 
 OPEN_IN_VIEW:
+
+SPRING_ADMIN_ACTIVE:
+
+SPRING_ADMIN_URL:
+
+CLIENT_SERVICE_URL:
+
+CLIENT_HEALTH_URL:
+
+CLIENT_MANAGEMENT_URL:
+
 
 Obs: caso possua RabbitMq instalado e queira usar
 RABBIT_HOST:
