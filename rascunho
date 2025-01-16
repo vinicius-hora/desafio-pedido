@@ -49,13 +49,13 @@ criar rollback em caso de erro na mensageria - ok
 criar metodo para salvar os dados via request - ok
 criar configiguração de origin - ok
 criar requesthandeler para gerenciar exceptions - ok
-trocar para banco de dados postgres
+trocar para banco de dados postgres - ok
 criar dockerfile e docker-compose - ok
 criar validação para não inserir mesmo codigo_pedido mensageria - ok
 criar validação para não inserir mesmo codigo_pedido api - ok
 cria validação para campos obrigatórios - ok
-criar swagger
-criar documentação do readme
+criar swagger - ok
+criar documentação do readme -ok
 
-testes
+testes - ok
 
